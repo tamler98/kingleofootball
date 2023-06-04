@@ -46,7 +46,10 @@
                 </div>
                 <div class="account_icons">
                     <a href="" class="account_icon"><i class="fas fa-user-circle"></i></a>
+                    <div class="cart-button">
                     <a href="/cart" class="account_icon"><i class="fas fa-shopping-cart"></i></a>
+                    <span class='badge badge-warning' id='lblCartCount'>${bookingCartItemCount}</span>
+                    </div>
                 </div>
             </div>
         </div>

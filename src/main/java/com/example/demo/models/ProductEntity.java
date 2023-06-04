@@ -16,6 +16,8 @@ public class ProductEntity {
     private int product_size;
     @Column(name = "price")
     private Double price;
+    @Column(name = "color")
+    private String color;
     @Column(name = "quantity")
     private int quantity;
     @Column(name = "description")
@@ -90,5 +92,13 @@ public class ProductEntity {
 
     public void setBookingCartItemEntities(List<BookingCartItemEntity> bookingCartItemEntities) {
         this.bookingCartItemEntities = bookingCartItemEntities;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

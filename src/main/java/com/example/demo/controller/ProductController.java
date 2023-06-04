@@ -34,6 +34,9 @@ public class ProductController {
     public String getAllProduct(Model model) {
         List<ProductEntity> listProduct = productService.findAll();
         model.addAttribute("listProduct", listProduct);
+        List<BookingCartItemEntity> bookingCartItemEntities = bookingCartItemService.findAll();
+        int count = countProduct(bookingCartItemEntities);
+        model.addAttribute("bookingCartItemCount", count);
         return "index";
     }
 
@@ -43,32 +46,41 @@ public class ProductController {
                               @RequestParam(name = "size") int size) {
         ProductEntity product =productService.findById(product_id);
         BookingCartEntity bookingCartEntity = bookingCartService.findById(1);
-        int checkExist = exist(product_id);
-        if(checkExist == 0) {
-            BookingCartItemEntity bookingCartItemEntity = bookingCartItemService.findByProductId(product_id);
-            bookingCartItemEntity.setQuantity(bookingCartItemEntity.getQuantity() + 1);
-            bookingCartItemService.save(bookingCartItemEntity);
-        } else if (checkExist == -1) {
-            BookingCartItemEntity bookingCartItemEntity = new BookingCartItemEntity();
+        int checkExist = exist(product_id, color, size);
+        BookingCartItemEntity bookingCartItemEntity;
+        if(checkExist == -1) {
+            bookingCartItemEntity = new BookingCartItemEntity();
             bookingCartItemEntity.setProductEntity(product);
             bookingCartItemEntity.setBookingCartEntity(bookingCartEntity);
             bookingCartItemEntity.setColor(color);
             bookingCartItemEntity.setQuantity(1);
             bookingCartItemEntity.setSize(size);
             bookingCartItemService.save(bookingCartItemEntity);
+        }else {
+            bookingCartItemEntity = bookingCartItemService.findByProductId(product_id);
+            bookingCartItemEntity.setQuantity(bookingCartItemEntity.getQuantity() + 1);
+            bookingCartItemService.save(bookingCartItemEntity);
         }
+        bookingCartItemService.save(bookingCartItemEntity);
         return "redirect:/";
     }
 
-    public int exist(int product_id){
+    public int exist(int product_id, String color, int size){
         List<BookingCartItemEntity> bookingCartItemEntities = bookingCartItemService.findByBookingCartId(1);
-        ProductEntity product = productService.findById(product_id);
         for (BookingCartItemEntity item: bookingCartItemEntities) {
-            if (item.getProductEntity().getId() == product_id && item.getSize() == product.getProduct_size()) {
-                return 0;
+            if (item.getProductEntity().getId() == product_id && item.getSize() == size && item.getColor().equals(color)) {
+                return item.getId();
             }
         }
         return -1;
+    }
+
+    public int countProduct(List<BookingCartItemEntity> bookingCartItemEntities){
+        int count = 0;
+        for (BookingCartItemEntity item:bookingCartItemEntities) {
+            count += item.getQuantity();
+        }
+        return count;
     }
 
 }

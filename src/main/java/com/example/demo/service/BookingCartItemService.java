@@ -21,4 +21,7 @@ public class BookingCartItemService {
 
     public BookingCartItemEntity findByProductId(int productId) { return bookingCartItemRepository.findByProductId(productId);
     }
+
+    public List<BookingCartItemEntity> findAll() { return bookingCartItemRepository.findAll();
+    }
 }
