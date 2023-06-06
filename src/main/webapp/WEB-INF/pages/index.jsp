@@ -146,40 +146,41 @@
                 <!-- Wrapper for carousel items -->
                 <div class="item">
                     <div class="row">
-                    <c:forEach items="${listProduct}" var="product">
-                    <div id="product_${product.id}" class="col-sm-3">
-                    <form action="addToCart/product_id=${product.id}" method="POST" modelAttribute="product">
+                    <c:forEach items="${listProduct}" var="item">
+                    <div id="product_${item.id}" class="col-sm-3">
+                    <form action="addToCart/${item.id}" method="POST" modelAttribute="product">
                         <div class="thumb-wrapper">
                             <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
                             <div class="img-box">
                                 <a href=""><img src="<c:url value='/resources/static/image/product/product2.jpg' />" alt="Image 1"></a>
                             </div>
                             <div class="thumb-content">
-                                <h4>${product.product_name}</h4>
+                                <h4>${item.product_name}</h4>
                                 <div class="choose_color">
                                     <label for="" class="size_label">Màu:</label>
-                                    <c:forEach var="color" items="${product.categoryEntity.categoryColorEntities}">
-                                        <button class="color_btn" onclick="setColor(${product.id}, event, '${color.color_name}')">${color.color_name}</button>
+                                    <c:forEach var="color" items="${item.productColorEntities}">
+                                        <button class="color_btn" onclick="setColor(${item.id}, event, '${color.color_name}')">${color.color_name}</button>
                                     </c:forEach>
                                 </div>
                                 <div class="choose_size">
                                     <label for="" class="size_label">Size:</label>
-                                    <button type="button" class="size_btn" onclick="setSize(${product.id}, event, '39')">39</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${product.id}, event, '40')">40</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${product.id}, event, '41')">41</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${product.id}, event, '42')">42</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${product.id}, event, '43')">43</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '38')">38</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '39')">39</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '40')">40</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '41')">41</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '42')">42</button>
+                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '43')">43</button>
                                 </div>
                                 <div class="thumb-content_footer">
-                                    <p class="item-price"><b>${product.price} VNĐ</b></p>
+                                    <p class="item-price"><b>${item.price} VNĐ</b></p>
                                     <button type="submit" class="btn btn-primary" onclick="updateOrderDetails()">Mua ngay</button>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Thêm hai trường ẩn để lưu trữ giá trị màu và kích thước -->
-                        <input type="hidden" id="colorInput_${product.id}" name="color" value="">
-                        <input type="hidden" id="sizeInput_${product.id}" name="size" value="">
+                        <input type="hidden" id="colorInput_${item.id}" name="color" value="">
+                        <input type="hidden" id="sizeInput_${item.id}" name="size" value="">
                     </form>
                         </div>
                         </c:forEach>

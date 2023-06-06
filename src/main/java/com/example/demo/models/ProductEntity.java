@@ -12,23 +12,18 @@ public class ProductEntity {
     private int id;
     @Column(name = "product_name")
     private String product_name;
-    @Column(name = "product_size")
-    private int product_size;
     @Column(name = "price")
     private Double price;
-    @Column(name = "color")
-    private String color;
-    @Column(name = "quantity")
-    private int quantity;
-    @Column(name = "description")
-    private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity categoryEntity;
 
     @OneToMany(mappedBy = "productEntity")
-    private List<BookingCartItemEntity> bookingCartItemEntities;
+    private List<ProductDetailEntity> productDetailEntities;
+
+    @OneToMany(mappedBy = "productEntity")
+    private List<ProductColorEntity> productColorEntities;
 
     public int getId() {
         return id;
@@ -46,36 +41,12 @@ public class ProductEntity {
         this.product_name = product_name;
     }
 
-    public int getProduct_size() {
-        return product_size;
-    }
-
-    public void setProduct_size(int product_size) {
-        this.product_size = product_size;
-    }
-
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public CategoryEntity getCategoryEntity() {
@@ -86,19 +57,19 @@ public class ProductEntity {
         this.categoryEntity = categoryEntity;
     }
 
-    public List<BookingCartItemEntity> getBookingCartItemEntities() {
-        return bookingCartItemEntities;
+    public List<ProductDetailEntity> getProductDetailEntities() {
+        return productDetailEntities;
     }
 
-    public void setBookingCartItemEntities(List<BookingCartItemEntity> bookingCartItemEntities) {
-        this.bookingCartItemEntities = bookingCartItemEntities;
+    public void setProductDetailEntities(List<ProductDetailEntity> productDetailEntities) {
+        this.productDetailEntities = productDetailEntities;
     }
 
-    public String getColor() {
-        return color;
+    public List<ProductColorEntity> getProductColorEntities() {
+        return productColorEntities;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setProductColorEntities(List<ProductColorEntity> productColorEntities) {
+        this.productColorEntities = productColorEntities;
     }
 }

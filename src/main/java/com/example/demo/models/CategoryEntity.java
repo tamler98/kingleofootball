@@ -20,8 +20,6 @@ public class CategoryEntity {
     @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL)
     private List<ProductEntity> productEntities;
 
-    @OneToMany(mappedBy = "categoryEntity", cascade = CascadeType.ALL)
-    private List<CategoryColorEntity> categoryColorEntities;
 
     public int getId() {
         return id;
@@ -55,11 +53,4 @@ public class CategoryEntity {
         this.productEntities = productEntities;
     }
 
-    public List<CategoryColorEntity> getCategoryColorEntities() {
-        return categoryColorEntities;
-    }
-
-    public void setCategoryColorEntities(List<CategoryColorEntity> categoryColorEntities) {
-        this.categoryColorEntities = categoryColorEntities;
-    }
 }

@@ -12,8 +12,8 @@ public class BookingCartItemEntity {
     private int id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "product_id")
-    private ProductEntity productEntity;
+    @JoinColumn(name = "product_detail_id")
+    private ProductDetailEntity productDetailEntity;
 
     @Column(name = "quantity")
     private int quantity;
@@ -36,12 +36,12 @@ public class BookingCartItemEntity {
         this.id = id;
     }
 
-    public ProductEntity getProductEntity() {
-        return productEntity;
+    public ProductDetailEntity getProductDetalEntity() {
+        return productDetailEntity;
     }
 
-    public void setProductEntity(ProductEntity productEntity) {
-        this.productEntity = productEntity;
+    public void setProductDetalEntity(ProductDetailEntity productDetalEntity) {
+        this.productDetailEntity = productDetalEntity;
     }
 
     public int getQuantity() {
@@ -50,6 +50,14 @@ public class BookingCartItemEntity {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public BookingCartEntity getBookingCartEntity() {
+        return bookingCartEntity;
+    }
+
+    public void setBookingCartEntity(BookingCartEntity bookingCartEntity) {
+        this.bookingCartEntity = bookingCartEntity;
     }
 
     public String getColor() {
@@ -66,13 +74,5 @@ public class BookingCartItemEntity {
 
     public void setSize(int size) {
         this.size = size;
-    }
-
-    public BookingCartEntity getBookingCartEntity() {
-        return bookingCartEntity;
-    }
-
-    public void setBookingCartEntity(BookingCartEntity bookingCartEntity) {
-        this.bookingCartEntity = bookingCartEntity;
     }
 }

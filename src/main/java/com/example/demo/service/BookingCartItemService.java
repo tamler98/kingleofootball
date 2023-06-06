@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.models.BookingCartItemEntity;
 import com.example.demo.repository.BookingCartItemRepository;
-import com.example.demo.repository.BookingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +22,8 @@ public class BookingCartItemService {
     }
 
     public List<BookingCartItemEntity> findAll() { return bookingCartItemRepository.findAll();
+    }
+
+    public void deleteById(int id) { bookingCartItemRepository.deleteById(id);
     }
 }

@@ -3,8 +3,8 @@ package com.example.demo.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "category_color")
-public class CategoryColorEntity {
+@Table(name = "product_color")
+public class ProductColorEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -13,8 +13,8 @@ public class CategoryColorEntity {
     private String color_name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private CategoryEntity categoryEntity;
+    @JoinColumn(name = "product_id")
+    private ProductEntity productEntity;
 
     public int getId() {
         return id;
@@ -32,11 +32,13 @@ public class CategoryColorEntity {
         this.color_name = color_name;
     }
 
-    public CategoryEntity getCategoryEntity() {
-        return categoryEntity;
+    public ProductEntity getProductEntity() {
+        return productEntity;
     }
 
-    public void setCategoryEntity(CategoryEntity categoryEntity) {
-        this.categoryEntity = categoryEntity;
+    public void setProductEntity(ProductEntity productEntity) {
+        this.productEntity = productEntity;
     }
+
+
 }
