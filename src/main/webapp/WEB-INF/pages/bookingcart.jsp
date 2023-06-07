@@ -4,109 +4,179 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href='<c:url value="/resources/static/css/style.css" />' rel='stylesheet'>
-    <link rel="icon" type="image/svg" href="/image/favicon_KL.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>KingLeo Football</title>
-</head>
-<body>
-    <header>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="header_logo">
-                    <a href="/"><img src="<c:url value="/resources/static/image/logo_KL-06.png" />" style="height: 70px;" alt=""></a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="header_nav">
-                    <a href="" class="nav_header_a">NIKE</a>
-                    <a href="" class="nav_header_a">ADIDAS</a>
-                    <a href="" class="nav_header_a">MIZUNO</a>
-                    <a href="" class="nav_header_a">CT3</a>
-                    <a href="" class="nav_header_a">KINGLEO</a>
-                    <a href="" class="nav_header_a">11PRO TONI</a>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="account_action">
-                <div class="search-container">
-                    <input type="search" placeholder="Tìm kiếm...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                <div class="account_icons">
-                    <a href="" class="account_icon"><i class="fas fa-user-circle"></i></a>
-                    <a href="" class="account_icon"><i class="fas fa-shopping-cart"></i></a>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
-    <main style="background: white;">
-                 <table class="table">
-                   <thead>
-                     <tr>
-                       <th scope="col">#</th>
-                       <th scope="col">Name</th>
-                       <th scope="col">Size</th>
-                       <th scope="col">Color</th>
-                       <th scope="col">Quantity</th>
-                       <th scope="col">Price</th>
-                       <th scope="col">Total</th>
-                     </tr>
-                   </thead>
-                   <tbody>
-                   <c:forEach items="${bookingCartItemList}" var="item">
-                     <tr style="background: white;">
-                       <th scope="row">${item.id}</th>
-                       <td>${item.productEntity.product_name}</td>
-                       <td>${item.size}</td>
-                       <td>${item.color}</td>
-                       <td>${item.quantity}</td>
-                       <td>${item.productEntity.price}</td>
-                       <td>${(item.quantity)*(item.productEntity.price)}</td>
-                     </tr>
-                   </c:forEach>
-                   </tbody>
-                 </table>
-        <footer>
-            <div class="container">
-              <div class="footer-content">
-                <div class="footer-column">
-                    <img src="<c:url value="/resources/static/image/logo_KL-06.png" />" alt="Image 1">
-                </div>
-                <div class="footer-column">
-                  <h3>About Us</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae metus commodo, faucibus lectus quis, tincidunt odio.</p>
-                </div>
-                <div class="footer-column">
-                  <h3>Contact Us</h3>
-                  <p>Address: 123 Street, City, Country</p>
-                  <p>Phone: +1234567890</p>
-                  <p>Email: info@example.com</p>
-                </div>
-                <div class="footer-column">
-                  <h3>Follow Us</h3>
-                  <ul class="social-media">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                  </ul>
+<jsp:include page="header.jsp" />
+    <main>
+    <section class="h-100 h-custom" style="background-color: #eee;">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col">
+              <div class="card">
+                <div class="card-body p-4">
+
+                  <div class="row">
+
+                    <div class="col-lg-7">
+                      <h5 class="mb-3"><a href="#!" class="text-body"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Tiếp tục mua hàng</a></h5>
+                      <hr>
+
+                      <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div style="text-align: left;">
+                          <p class="mb-1">Giỏ hàng của bạn</p>
+                          <p class="mb-0">Bạn có 4 sản phẩm trong giỏ hàng</p>
+                        </div>
+                        <div>
+                          <p class="mb-0"><span class="text-muted">Sắp xếp theo:</span> <a href="#!"
+                              class="text-body">giá <i class="fas fa-angle-down mt-1"></i></a></p>
+                        </div>
+                      </div>
+
+                        <div class="card mb-3">
+                        <c:forEach items="${bookingCartItemList}" var="item">
+                            <div class="card-body" style="border-bottom: 1px solid #f3f3f3;">
+                                <div class="d-flex justify-content-between">
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div>
+                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-shopping-carts/img1.webp"
+                                                class="img-fluid rounded-3" alt="Shopping item" style="width: 65px; margin-right: 1em;">
+                                        </div>
+                                        <div class="ms-3">
+                                            <h5>${item.productDetailEntity.productEntity.product_name}</h5>
+                                            <p class="small mb-0" style="text-align: left;">Màu: ${item.color}, Size: ${item.size}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex flex-row align-items-center">
+                                        <div style="width: 50px;">
+                                            <h5 class="fw-normal mb-0">${item.quantity}</h5>
+                                        </div>
+                                        <div style="width: 80px;">
+                                            <h5 class="mb-0">${item.productDetailEntity.productEntity.price}</h5>
+                                        </div>
+                                        <a href="cart/deleteItem/${item.id}" style="color: #cecece;"><i class="fas fa-trash-alt"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            </c:forEach>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-5">
+
+                      <div class="card bg-primary text-white rounded-3">
+                        <div class="card-body" >
+                          <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h5 class="mb-0">Card details</h5>
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+                              class="img-fluid rounded-3" style="width: 45px;" alt="Avatar">
+                          </div>
+
+                          <p class="small mb-2">Card type</p>
+                          <a href="#!" type="submit" class="text-white"><i
+                              class="fab fa-cc-mastercard fa-2x me-2"></i></a>
+                          <a href="#!" type="submit" class="text-white"><i
+                              class="fab fa-cc-visa fa-2x me-2"></i></a>
+                          <a href="#!" type="submit" class="text-white"><i
+                              class="fab fa-cc-amex fa-2x me-2"></i></a>
+                          <a href="#!" type="submit" class="text-white"><i class="fab fa-cc-paypal fa-2x"></i></a>
+
+                          <form class="mt-4">
+                            <div class="form-outline form-white mb-4">
+                              <input type="text" id="typeName" class="form-control form-control-lg" siez="17"
+                                placeholder="Cardholder's Name" />
+                              <label class="form-label" for="typeName">Cardholder's Name</label>
+                            </div>
+
+                            <div class="form-outline form-white mb-4">
+                              <input type="text" id="typeText" class="form-control form-control-lg" siez="17"
+                                placeholder="1234 5678 9012 3457" minlength="19" maxlength="19" />
+                              <label class="form-label" for="typeText">Card Number</label>
+                            </div>
+
+                            <div class="row mb-4">
+                              <div class="col-md-6">
+                                <div class="form-outline form-white">
+                                  <input type="text" id="typeExp" class="form-control form-control-lg"
+                                    placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7" />
+                                  <label class="form-label" for="typeExp">Expiration</label>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-outline form-white">
+                                  <input type="password" id="typeText" class="form-control form-control-lg"
+                                    placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3" />
+                                  <label class="form-label" for="typeText">Cvv</label>
+                                </div>
+                              </div>
+                            </div>
+
+                          </form>
+
+                          <hr class="my-4">
+
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Giá trị đơn hàng</p>
+                            <p class="mb-2">$4798.00</p>
+                          </div>
+
+                          <div class="d-flex justify-content-between">
+                            <p class="mb-2">Phí ship</p>
+                            <p class="mb-2">$20.00</p>
+                          </div>
+
+                          <div class="d-flex justify-content-between mb-4">
+                            <p class="mb-2">Tổng cộng</p>
+                            <p class="mb-2">$4818.00</p>
+                          </div>
+
+                          <button type="button" class="btn btn-info btn-block btn-lg">
+                            <div class="d-flex justify-content-between">
+                              <span>Đặt hàng<i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                            </div>
+                          </button>
+
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
                 </div>
               </div>
-              <p class="footer-copy">&copy; 2023 Your Shop. All rights reserved.</p>
             </div>
-        </footer>
-    </main>
+          </div>
+        </div>
+      </section>
+      </main>
+      <footer>
+                  <div class="container">
+                    <div class="footer-content">
+                      <div class="footer-column">
+                          <img src="<c:url value="/resources/static/image/logo_KL-06.png" />" alt="Image 1">
+                      </div>
+                      <div class="footer-column">
+                        <h3>About Us</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae metus commodo, faucibus lectus quis, tincidunt odio.</p>
+                      </div>
+                      <div class="footer-column">
+                        <h3>Contact Us</h3>
+                        <p>Address: 123 Street, City, Country</p>
+                        <p>Phone: +1234567890</p>
+                        <p>Email: info@example.com</p>
+                      </div>
+                      <div class="footer-column">
+                        <h3>Follow Us</h3>
+                        <ul class="social-media">
+                          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <p class="footer-copy">&copy; 2023 Your Shop. All rights reserved.</p>
+                  </div>
+              </footer>
 </body>
 </html>

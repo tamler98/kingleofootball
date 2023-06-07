@@ -9,6 +9,7 @@ import com.example.demo.service.BookingCartItemService;
 import com.example.demo.service.BookingCartService;
 import com.example.demo.service.ProductDetailService;
 import com.example.demo.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,12 +36,12 @@ public class ProductController {
     ProductDetailService productDetailService;
 
     @GetMapping()
-    public String getAllProduct(Model model) {
+    public String getAllProduct(Model model, HttpSession session) {
         List<ProductEntity> listProduct = setListProduct();
         model.addAttribute("listProduct", listProduct);
         List<BookingCartItemEntity> bookingCartItemEntities = bookingCartItemService.findAll();
         int count = countProduct(bookingCartItemEntities);
-        model.addAttribute("bookingCartItemCount", count);
+        session.setAttribute("count", count);
         return "index";
     }
 
@@ -51,21 +52,13 @@ public class ProductController {
         ProductDetailEntity product = findProduct(id, color, size);
         BookingCartEntity bookingCartEntity = bookingCartService.findById(1);
         int checkExist = exist(product.getId(), color, size);
-        BookingCartItemEntity bookingCartItemEntity;
         if(checkExist == -1) {
-            bookingCartItemEntity = new BookingCartItemEntity();
-            bookingCartItemEntity.setProductDetalEntity(product);
-            bookingCartItemEntity.setBookingCartEntity(bookingCartEntity);
-            bookingCartItemEntity.setColor(color);
-            bookingCartItemEntity.setQuantity(1);
-            bookingCartItemEntity.setSize(size);
-            bookingCartItemService.save(bookingCartItemEntity);
+            createNewBookingCartItem(product, bookingCartEntity, color, size);
         }else {
-            bookingCartItemEntity = bookingCartItemService.findByProductId(product.getId());
+            BookingCartItemEntity bookingCartItemEntity = bookingCartItemService.findByProductDetailId(product.getId());
             bookingCartItemEntity.setQuantity(bookingCartItemEntity.getQuantity() + 1);
             bookingCartItemService.save(bookingCartItemEntity);
         }
-        bookingCartItemService.save(bookingCartItemEntity);
         return "redirect:/";
     }
 
@@ -113,4 +106,14 @@ public class ProductController {
         return product;
     }
 
+    public void createNewBookingCartItem(ProductDetailEntity product, BookingCartEntity bookingCartEntity, String color, int size){
+        BookingCartItemEntity bookingCartItemEntity = new BookingCartItemEntity();
+        bookingCartItemEntity = new BookingCartItemEntity();
+        bookingCartItemEntity.setProductDetailEntity(product);
+        bookingCartItemEntity.setBookingCartEntity(bookingCartEntity);
+        bookingCartItemEntity.setColor(color);
+        bookingCartItemEntity.setQuantity(1);
+        bookingCartItemEntity.setSize(size);
+        bookingCartItemService.save(bookingCartItemEntity);
+    }
 }

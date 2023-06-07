@@ -36,12 +36,12 @@ public class BookingCartItemEntity {
         this.id = id;
     }
 
-    public ProductDetailEntity getProductDetalEntity() {
+    public ProductDetailEntity getProductDetailEntity() {
         return productDetailEntity;
     }
 
-    public void setProductDetalEntity(ProductDetailEntity productDetalEntity) {
-        this.productDetailEntity = productDetalEntity;
+    public void setProductDetailEntity(ProductDetailEntity productDetailEntity) {
+        this.productDetailEntity = productDetailEntity;
     }
 
     public int getQuantity() {
