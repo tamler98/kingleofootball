@@ -16,7 +16,6 @@ public interface BookingCartItemRepository extends JpaRepository<BookingCartItem
     BookingCartItemEntity findById(int id);
     @Query(value = "select * from booking_cart_item where booking_cart_id =?1", nativeQuery = true)
     List<BookingCartItemEntity> findByBookingCartId(int id);
-    @Query(value = "select * from booking_cart_item where product_id =?1", nativeQuery = true)
-
-    BookingCartItemEntity findByProductId(int productId);
+    @Query(value = "select * from booking_cart_item where product_detail_id =?1", nativeQuery = true)
+    BookingCartItemEntity findByProductDetailId(int productId);
 }

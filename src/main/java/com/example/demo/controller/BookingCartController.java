@@ -5,6 +5,7 @@ import com.example.demo.models.BookingCartItemEntity;
 import com.example.demo.service.BookingCartItemService;
 import com.example.demo.service.BookingCartService;
 import com.example.demo.service.ProductService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +36,12 @@ public class BookingCartController {
     }
 
     @GetMapping(value = "/deleteItem/{id}")
-    public String deleteCartItem(@PathVariable int id, Model model){
-        bookingCartItemService.deleteById(id);
+    public String deleteCartItem(@PathVariable int id, Model model, HttpSession session){
+        BookingCartItemEntity bookingCartItemEntity = bookingCartItemService.findById(id);
         model.addAttribute("msg", "Delete success");
+        int count = (int) session.getAttribute("count");
+        session.setAttribute("count", count - bookingCartItemEntity.getQuantity());
+        bookingCartItemService.deleteById(id);
         return "redirect:/cart";
     }
 

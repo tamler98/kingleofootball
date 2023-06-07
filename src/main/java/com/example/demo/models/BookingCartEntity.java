@@ -11,7 +11,7 @@ public class BookingCartEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "bookingCartEntity", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bookingCartEntity")
     private List<BookingCartItemEntity> bookingCartItemEntities;
 
     public int getId() {

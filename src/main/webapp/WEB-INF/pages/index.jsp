@@ -21,40 +21,7 @@
     <title>KingLeo Football</title>
 </head>
 <body>
-    <header>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="header_logo">
-                    <a href="/"><img src="<c:url value="/resources/static/image/logo_KL-06.png" />" style="height: 70px;" alt=""></a>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="header_nav">
-                    <a href="" class="nav_header_a">NIKE</a>
-                    <a href="" class="nav_header_a">ADIDAS</a>
-                    <a href="" class="nav_header_a">MIZUNO</a>
-                    <a href="" class="nav_header_a">CT3</a>
-                    <a href="" class="nav_header_a">KINGLEO</a>
-                    <a href="" class="nav_header_a">11PRO TONI</a>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="account_action">
-                <div class="search-container">
-                    <input type="search" placeholder="Tìm kiếm...">
-                    <button type="submit"><i class="fas fa-search"></i></button>
-                </div>
-                <div class="account_icons">
-                    <a href="" class="account_icon"><i class="fas fa-user-circle"></i></a>
-                    <div class="cart-button">
-                    <a href="/cart" class="account_icon"><i class="fas fa-shopping-cart"></i></a>
-                    <span class='badge badge-warning' id='lblCartCount'>${bookingCartItemCount}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    </header>
+<jsp:include page="header.jsp" />
     <main>
         <div class="slogan">KING LEO FOOTBALL - NÂNG NIU ĐÔI BÀN CHÂN BẠN!</div>
         <div class="slider">

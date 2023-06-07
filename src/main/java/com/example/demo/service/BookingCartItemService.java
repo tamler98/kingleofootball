@@ -18,12 +18,15 @@ public class BookingCartItemService {
     public List<BookingCartItemEntity> findByBookingCartId(int id) { return bookingCartItemRepository.findByBookingCartId(id);
     }
 
-    public BookingCartItemEntity findByProductId(int productId) { return bookingCartItemRepository.findByProductId(productId);
-    }
-
     public List<BookingCartItemEntity> findAll() { return bookingCartItemRepository.findAll();
     }
 
     public void deleteById(int id) { bookingCartItemRepository.deleteById(id);
+    }
+
+    public BookingCartItemEntity findByProductDetailId(int id) { return bookingCartItemRepository.findByProductDetailId(id);
+    }
+
+    public BookingCartItemEntity findById(int id) { return bookingCartItemRepository.findById(id);
     }
 }
