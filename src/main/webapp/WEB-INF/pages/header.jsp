@@ -23,7 +23,7 @@
 </head>
   <header>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-2" style="padding-top: 5px;display: flex;justify-content: right;">
                 <div class="header_logo">
                     <a href="/"><img src="<c:url value="/resources/static/image/logo_KL-06.png" />" style="height: 70px;" alt=""></a>
                 </div>
@@ -38,7 +38,7 @@
                     <a href="" class="nav_header_a">11PRO TONI</a>
                 </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="account_action">
                 <div class="search-container">
                     <input type="search" placeholder="Tìm kiếm...">

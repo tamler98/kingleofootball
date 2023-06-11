@@ -11,6 +11,8 @@ import com.example.demo.service.ProductDetailService;
 import com.example.demo.service.ProductService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,9 +38,17 @@ public class ProductController {
     ProductDetailService productDetailService;
 
     @GetMapping()
-    public String getAllProduct(Model model, HttpSession session) {
-        List<ProductEntity> listProduct = setListProduct();
-        model.addAttribute("listProduct", listProduct);
+    public String getAllProduct(Model model,
+                                HttpSession session,
+                                @RequestParam(name = "page", defaultValue = "0") int pageNumber,
+                                @RequestParam(name = "size", defaultValue = "8") int pageSize) {
+//        List<ProductEntity> listProduct = productService.findAll();
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        Page<ProductEntity> listProduct = productService.getProductList(pageRequest);
+        model.addAttribute("productList", listProduct.getContent());
+        model.addAttribute("currentPage", listProduct.getNumber());
+        model.addAttribute("totalPages", listProduct.getTotalPages());
+
         List<BookingCartItemEntity> bookingCartItemEntities = bookingCartItemService.findAll();
         int count = countProduct(bookingCartItemEntities);
         session.setAttribute("count", count);
@@ -49,15 +59,21 @@ public class ProductController {
     public String showAddRoom(Model model, @PathVariable int id,
                               @RequestParam(name = "color") String color,
                               @RequestParam(name = "size") int size) {
-        ProductDetailEntity product = findProduct(id, color, size);
-        BookingCartEntity bookingCartEntity = bookingCartService.findById(1);
-        int checkExist = exist(product.getId(), color, size);
-        if(checkExist == -1) {
-            createNewBookingCartItem(product, bookingCartEntity, color, size);
-        }else {
-            BookingCartItemEntity bookingCartItemEntity = bookingCartItemService.findByProductDetailId(product.getId());
-            bookingCartItemEntity.setQuantity(bookingCartItemEntity.getQuantity() + 1);
-            bookingCartItemService.save(bookingCartItemEntity);
+        try {
+            ProductDetailEntity product = findProduct(id, color, size);
+            BookingCartEntity bookingCartEntity = bookingCartService.findById(1);
+            int checkExist = exist(product.getId(), color, size);
+            if(checkExist == -1) {
+                createNewBookingCartItem(product, bookingCartEntity, color, size);
+            }else {
+                BookingCartItemEntity bookingCartItemEntity = bookingCartItemService.findByProductDetailId(product.getId());
+                bookingCartItemEntity.setQuantity(bookingCartItemEntity.getQuantity() + 1);
+                bookingCartItemService.save(bookingCartItemEntity);
+            }
+            return "redirect:/";
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "khong tim thay san pham");
         }
         return "redirect:/";
     }
@@ -101,6 +117,7 @@ public class ProductController {
         for (ProductDetailEntity item: productDetailEntities) {
             if (item.getColor().equals(color) && item.getSize() == size) {
                 product = item;
+                break;
             }
         }
         return product;

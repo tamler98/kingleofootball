@@ -4,6 +4,8 @@ package com.example.demo.service;
 import com.example.demo.models.ProductEntity;
 import com.example.demo.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,5 +21,8 @@ public class ProductService {
     }
 
     public ProductEntity findById(int productId) { return productRepository.findById(productId);
+    }
+
+    public Page<ProductEntity> getProductList(PageRequest pageRequest) { return productRepository.getProductList(pageRequest);
     }
 }

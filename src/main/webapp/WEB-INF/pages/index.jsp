@@ -3,7 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,7 +23,8 @@
 </head>
 <body>
 <jsp:include page="header.jsp" />
-    <main>
+<div id="error-message" class="alert alert-danger" style="display: none;">${msg}</div>
+    <main style="background: white;">
         <div class="slogan">KING LEO FOOTBALL - NÂNG NIU ĐÔI BÀN CHÂN BẠN!</div>
         <div class="slider">
             <div class="slide active">
@@ -113,44 +115,45 @@
                 <!-- Wrapper for carousel items -->
                 <div class="item">
                     <div class="row">
-                    <c:forEach items="${listProduct}" var="item">
-                    <div id="product_${item.id}" class="col-sm-3">
-                    <form action="addToCart/${item.id}" method="POST" modelAttribute="product">
-                        <div class="thumb-wrapper">
-                            <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
-                            <div class="img-box">
-                                <a href=""><img src="<c:url value='/resources/static/image/product/product2.jpg' />" alt="Image 1"></a>
-                            </div>
-                            <div class="thumb-content">
-                                <h4>${item.product_name}</h4>
-                                <div class="choose_color">
-                                    <label for="" class="size_label">Màu:</label>
-                                    <c:forEach var="color" items="${item.productColorEntities}">
-                                        <button class="color_btn" onclick="setColor(${item.id}, event, '${color.color_name}')">${color.color_name}</button>
-                                    </c:forEach>
+                    <c:forEach items="${productList}" var="item">
+                        <div id="product_${item.id}" class="col-sm-3">
+                            <form action="addToCart/${item.id}" method="POST" modelAttribute="product">
+                                <div class="thumb-wrapper">
+                                    <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
+                                    <div class="img-box">
+                                        <a href=""><img src="<c:url value='/resources/static/image/product/product2.jpg' />" alt="Image 1"></a>
+                                    </div>
+                                    <div class="thumb-content">
+                                        <h4>${item.product_name}</h4>
+                                        <div class="choose_color">
+                                            <label for="" class="size_label">Màu:</label>
+                                            <c:forEach var="color" items="${item.productColorEntities}">
+                                                <button class="color_btn" onclick="setColor(${item.id}, event, '${color.color_name}')">${color.color_name}</button>
+                                            </c:forEach>
+                                        </div>
+                                        <div class="choose_size">
+                                            <label for="" class="size_label">Size:</label>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '38')">38</button>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '39')">39</button>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '40')">40</button>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '41')">41</button>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '42')">42</button>
+                                            <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '43')">43</button>
+                                        </div>
+                                        <div class="thumb-content_footer">
+                                            <p class="item-price"><b>${item.price} VNĐ</b></p>
+                                            <button type="submit" class="btn btn-primary" onclick="updateOrderDetails()">Mua ngay</button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="choose_size">
-                                    <label for="" class="size_label">Size:</label>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '38')">38</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '39')">39</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '40')">40</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '41')">41</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '42')">42</button>
-                                    <button type="button" class="size_btn" onclick="setSize(${item.id}, event, '43')">43</button>
-                                </div>
-                                <div class="thumb-content_footer">
-                                    <p class="item-price"><b>${item.price} VNĐ</b></p>
-                                    <button type="submit" class="btn btn-primary" onclick="updateOrderDetails()">Mua ngay</button>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Thêm hai trường ẩn để lưu trữ giá trị màu và kích thước -->
-                        <input type="hidden" id="colorInput_${item.id}" name="color" value="">
-                        <input type="hidden" id="sizeInput_${item.id}" name="size" value="">
-                    </form>
+                                <!-- Thêm hai trường ẩn để lưu trữ giá trị màu và kích thước -->
+                                <input type="hidden" id="colorInput_${item.id}" name="color" value="">
+                                <input type="hidden" id="sizeInput_${item.id}" name="size" value="">
+                            </form>
                         </div>
-                        </c:forEach>
+                    </c:forEach>
+
                     </div>
                 </div>
                 </div>
@@ -159,16 +162,19 @@
 
 
         <div class="product_footer">
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a class="active" href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
-          </div>
+            <div class="pagination">
+                <c:if test="${totalPages > 1}">
+                    <c:if test="${currentPage > 0}">
+                        <a href="?page=${currentPage - 1}">&laquo;</a>
+                    </c:if>
+                    <c:forEach begin="0" end="${totalPages - 1}" var="i">
+                    <a href="?page=${i}">${i+1}</a>
+                    </c:forEach>
+                    <c:if test="${currentPage < totalPages - 1}">
+                        <a href="?page=${currentPage + 1}">&raquo;</a>
+                    </c:if>
+                </c:if>
+            </div>
         </div>
         <footer>
             <div class="container">
@@ -248,5 +254,19 @@
     document.querySelector("form").submit();
   }
  </script>
-    <script src='<c:url value="/resources/static/js/slide.js" />'></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var currentPage = "${currentPage}"; // Lấy giá trị của biến currentPage từ JSP
+
+          // Tìm tất cả các thẻ <a> trong phần tử có lớp pagination
+          var pageLinks = document.querySelectorAll(".pagination a");
+
+          // Lặp qua các thẻ <a> và kiểm tra xem có phải là trang hiện tại hay không
+          for (var i = 0; i < pageLinks.length; i++) {
+            if (pageLinks[i].textContent - 1 === parseInt(currentPage)) {
+              pageLinks[i].classList.add("active-page"); // Thêm lớp active-page cho liên kết hiện tại
+            }
+          }
+        });
+    </script>
 </html>
