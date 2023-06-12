@@ -269,4 +269,5 @@
           }
         });
     </script>
+    <script src='<c:url value="/resources/static/js/slide.js" />'></script>
 </html>

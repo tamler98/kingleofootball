@@ -148,7 +148,7 @@ header {
   .prev,
 .next {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translateY(-50%);
   font-size: 30px;
   cursor: pointer;
@@ -444,7 +444,6 @@ header {
 
 
 .popular_product1 {
-    height: 1100px;
     padding-top: 1em;
     box-shadow: 0px 0px 4px rgb(155, 155, 155);
 }
@@ -480,6 +479,7 @@ h2::after {
 
 }
 .thumb-wrapper {
+    height: 455px;
     padding: 0px 0px 20px 0px;
     border: 2px solid #0099dab0;
 	background: #fff;
