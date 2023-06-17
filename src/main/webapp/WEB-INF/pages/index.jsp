@@ -14,9 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Open+Sans">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link href='<c:url value="/resources/static/css/style.css" />' rel='stylesheet'>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='<c:url value="/resources/static/css/style.css" />' rel='stylesheet'>
     <link rel="icon" type="image/svg" href="<c:url value="/resources/static/image/favicon_KL.svg" />">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>KingLeo Football</title>
@@ -121,10 +121,10 @@
                                 <div class="thumb-wrapper">
                                     <span class="wish-icon"><i class="fa fa-heart-o"></i></span>
                                     <div class="img-box">
-                                        <a href=""><img src="<c:url value='/resources/static/image/product/product2.jpg' />" alt="Image 1"></a>
+                                        <a href="/product/productId=${item.id}"><img src="<c:url value='/resources/static/image/product/product2.jpg' />" alt="Image 1"></a>
                                     </div>
                                     <div class="thumb-content">
-                                        <h4>${item.product_name}</h4>
+                                        <h4><a href="/product/productId=${item.id}">${item.product_name}</a></h4>
                                         <div class="choose_color">
                                             <label for="" class="size_label">Màu:</label>
                                             <c:forEach var="color" items="${item.productColorEntities}">
@@ -176,35 +176,8 @@
                 </c:if>
             </div>
         </div>
-        <footer>
-            <div class="container">
-              <div class="footer-content">
-                <div class="footer-column">
-                    <img src="<c:url value="/resources/static/image/logo_KL-06.png" />" alt="Image 1">
-                </div>
-                <div class="footer-column">
-                  <h3>About Us</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae metus commodo, faucibus lectus quis, tincidunt odio.</p>
-                </div>
-                <div class="footer-column">
-                  <h3>Contact Us</h3>
-                  <p>Address: 123 Street, City, Country</p>
-                  <p>Phone: +1234567890</p>
-                  <p>Email: info@example.com</p>
-                </div>
-                <div class="footer-column">
-                  <h3>Follow Us</h3>
-                  <ul class="social-media">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                  </ul>
-                </div>
-              </div>
-              <p class="footer-copy">&copy; 2023 Your Shop. All rights reserved.</p>
-            </div>
-        </footer>
     </main>
+    <jsp:include page="footer.jsp" />
 </body>
 <script>
     $(document).ready(function(){

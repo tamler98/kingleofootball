@@ -55,10 +55,19 @@ public class ProductController {
         return "index";
     }
 
+    @GetMapping(value = "/product/productId={id}", produces = "text/plain;charset=UTF-8")
+    public String showProduct(Model model, @PathVariable int id) {
+        ProductEntity product = productService.findById(id);
+        model.addAttribute("product", product);
+        return "product";
+    }
+
     @RequestMapping(value="/addToCart/{id}",method = POST, produces = "text/plain;charset=UTF-8")
     public String showAddRoom(Model model, @PathVariable int id,
                               @RequestParam(name = "color") String color,
                               @RequestParam(name = "size") int size) {
+        System.out.println(color);
+        System.out.println(size);
         try {
             ProductDetailEntity product = findProduct(id, color, size);
             BookingCartEntity bookingCartEntity = bookingCartService.findById(1);
