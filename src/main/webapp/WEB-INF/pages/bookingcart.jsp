@@ -150,33 +150,6 @@
         </div>
       </section>
       </main>
-      <footer>
-                  <div class="container">
-                    <div class="footer-content">
-                      <div class="footer-column">
-                          <img src="<c:url value="/resources/static/image/logo_KL-06.png" />" alt="Image 1">
-                      </div>
-                      <div class="footer-column">
-                        <h3>About Us</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vitae metus commodo, faucibus lectus quis, tincidunt odio.</p>
-                      </div>
-                      <div class="footer-column">
-                        <h3>Contact Us</h3>
-                        <p>Address: 123 Street, City, Country</p>
-                        <p>Phone: +1234567890</p>
-                        <p>Email: info@example.com</p>
-                      </div>
-                      <div class="footer-column">
-                        <h3>Follow Us</h3>
-                        <ul class="social-media">
-                          <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                          <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <p class="footer-copy">&copy; 2023 Your Shop. All rights reserved.</p>
-                  </div>
-              </footer>
+      <jsp:include page="footer.jsp" />
 </body>
 </html>
