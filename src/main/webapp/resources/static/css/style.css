@@ -379,7 +379,7 @@ header {
   }
 
   .footer-column {
-    width: 300px;
+    width: 25%;
   }
   
   h3 {
@@ -389,6 +389,10 @@ header {
   
   p {
     margin: 0;
+    text-wrap: revert;
+        margin: 0;
+        width: 90%;
+        text-align: justify;
   }
   
   .social-media {
@@ -539,6 +543,7 @@ h2::after {
 	margin-top: 5px;
 	line-height: 16px;
 	border-radius: 20px;
+	width: 100px;
 }
 .thumb-content .btn:hover, .thumb-content .btn:focus {
 	color: #fff;

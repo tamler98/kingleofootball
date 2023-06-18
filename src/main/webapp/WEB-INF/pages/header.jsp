@@ -40,12 +40,14 @@
             </div>
             <div class="col-sm-4">
                 <div class="account_action">
+                <form action="search" method="GET">
                 <div class="search-container">
-                    <input type="search" placeholder="Tìm kiếm...">
+                    <input type="search" name="searchInput" placeholder="Tìm kiếm...">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </div>
+                </form>
                 <div class="account_icons">
-                    <a href="" class="account_icon"><i class="fas fa-user-circle"></i></a>
+                    <a href="admin/manager" class="account_icon"><i class="fas fa-user-circle"></i></a>
                     <div class="cart-button">
                     <a href="/cart" class="account_icon"><i class="fas fa-shopping-cart"></i></a>
                     <span class='badge badge-warning' id='lblCartCount'>${count}</span>

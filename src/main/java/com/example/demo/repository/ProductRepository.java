@@ -18,5 +18,10 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
     @Query(value="select * from product", nativeQuery = true)
     Page<ProductEntity> getProductList(Pageable pageable);
 
+    @Query(value="select * from product where product.product_name like %?1%", nativeQuery = true)
+    Page<ProductEntity> getProductListBySearchInput(Pageable pageable, String searchInput);
+
     List<ProductEntity> findAll();
+    @Query(value="select * from product where product.product_name like %?1% ", nativeQuery = true)
+    List<ProductEntity> findBySearchInput(String searchInput);
 }

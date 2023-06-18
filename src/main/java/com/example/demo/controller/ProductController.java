@@ -87,6 +87,25 @@ public class ProductController {
         return "redirect:/";
     }
 
+    @GetMapping("/search")
+    public String searchProduct(@RequestParam(name = "searchInput") String searchInput, Model model,
+                                @RequestParam(name = "page", defaultValue = "0") int pageNumber,
+                                @RequestParam(name = "size", defaultValue = "8") int pageSize) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, pageSize);
+        Page<ProductEntity> productList = productService.getProductListBySearchInput(pageRequest, searchInput);
+        if(productList.isEmpty()) {
+            productList = productService.getProductList(pageRequest);
+            model.addAttribute("productList", productList.getContent());
+            model.addAttribute("currentPage", productList.getNumber());
+            model.addAttribute("totalPages", productList.getTotalPages());
+        }else {
+            model.addAttribute("productList", productList.getContent());
+            model.addAttribute("currentPage", productList.getNumber());
+            model.addAttribute("totalPages", productList.getTotalPages());
+        }
+        return "search";
+    }
+
     public int exist(int product_id, String color, int size){
         List<BookingCartItemEntity> bookingCartItemEntities = bookingCartItemService.findByBookingCartId(1);
         for (BookingCartItemEntity item: bookingCartItemEntities) {

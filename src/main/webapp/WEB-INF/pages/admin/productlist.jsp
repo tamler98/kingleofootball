@@ -21,32 +21,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>KingLeo Football</title>
 </head>
-    <footer>
-                <div class="footer_container">
-                  <div class="footer-content">
-                    <div class="footer-column" style="text-align: center;">
-                        <img src="<c:url value="/resources/static/image/logo_KL-06.png" />" alt="Image 1">
-                    </div>
-                    <div class="footer-column" style="padding-top: .5em;">
-                      <h3>Về chúng tôi</h3>
-                      <p>Cung cấp các loại giày bóng đá giá rẻ, phù hợp với thị trường và nhu cầu của anh em đam mê đá bóng.</p>
-                    </div>
-                    <div class="footer-column" style="padding-top: .5em;">
-                      <h3>Liên hệ</h3>
-                      <p><strong>Địa chỉ:</strong> K25 Đỗ Thế Chấp, Tam Kỳ, Quảng Nam</p>
-                      <p><strong>Phone:</strong> 038 571 8282</p>
-                      <p><strong>Email:</strong> trinhthanhdat8282@gmail.com</p>
-                    </div>
-                    <div class="footer-column" style="padding-top: .5em;">
-                      <h3>Theo dõi</h3>
-                      <ul class="social-media">
-                        <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <p class="footer-copy">&copy; 2023 Tamler98. All rights reserved.</p>
-                </div>
-            </footer>
+<body>
+<jsp:include page="../header.jsp" />
+<main>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Color</th>
+      <th scope="col">Size</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <c:forEach items="${productList}" var="item">
+    <tr>
+      <th scope="row">${item.id}</th>
+      <td>${item.productEntity.product_name}</td>
+      <td>${item.color}</td>
+      <td>${item.size}</td>
+      <td>${item.productEntity.price}</td>
+      <td>${item.quantity}</td>
+      <td>
+        <button>Delete</butston>
+        <button>Update</button>
+      </td>
+    </tr>
+  </c:forEach>
+  </tbody>
+</table>
+    </main>
+    <jsp:include page="../footer.jsp" />
+</body>
 </html>

@@ -25,4 +25,10 @@ public class ProductService {
 
     public Page<ProductEntity> getProductList(PageRequest pageRequest) { return productRepository.getProductList(pageRequest);
     }
+
+    public List<ProductEntity> findBySearchInput(String searchInput) { return productRepository.findBySearchInput(searchInput);
+    }
+
+    public Page<ProductEntity> getProductListBySearchInput(PageRequest pageRequest, String searchInput) { return productRepository.getProductListBySearchInput(pageRequest, searchInput);
+    }
 }
